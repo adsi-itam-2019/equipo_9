@@ -3,6 +3,7 @@
     <v-toolbar
       fixed
       app
+      color="yellow"
     >
       <v-toolbar-title v-text="title" />
       <v-spacer />
