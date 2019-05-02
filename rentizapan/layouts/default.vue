@@ -3,12 +3,18 @@
     <v-toolbar
       fixed
       app
-      color="yellow"
+      color="#FCAF1F"
     >
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="title" @click="$router.push('/')"/>
       <v-spacer />
       <v-btn flat>
-        login
+        Anúnciate
+      </v-btn>
+      <v-btn flat>
+        Sign up
+      </v-btn>
+      <v-btn flat>
+        Login
       </v-btn>
     </v-toolbar>
 

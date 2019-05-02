@@ -1,10 +1,12 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div v-for="(item, i) in names" :key="i">
-        {{ item.name }} - {{ item.role }}
-      </div>
-    </v-flex>
+  <v-layout row wrap justify-center align-center>
+    <v-card v-for="(item, i) in casas" :key="i" @click="$router.push(`/property/${item.id}`)">
+      <v-flex xs6>
+        <div>
+          {{ item.titulo }} - {{ item.img_url }}
+        </div>
+      </v-flex>
+    </v-card>
   </v-layout>
 </template>
 
@@ -13,11 +15,11 @@
 export default {
   data() {
     return {
-      names: [
-        { name: 'Paola', role: 'SM' },
-        { name: 'Jaime', role: 'PO' },
-        { name: 'Diego', role: 'FD' },
-        { name: 'Alex', role: 'FD' }
+      casas: [
+        { titulo: 'Paola', img_url: 'SM', precio: 2909, id: '1' },
+        { titulo: 'Paola', img_url: 'SM', precio: 2909, id: '2' },
+        { titulo: 'Paola', img_url: 'SM', precio: 2909, id: '3' },
+        { titulo: 'Paola', img_url: 'SM', precio: 2909, id: '4' }
       ]
     }
   }
