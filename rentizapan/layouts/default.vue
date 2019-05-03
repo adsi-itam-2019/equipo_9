@@ -6,7 +6,7 @@
       color="#FCAF1F"
     >
       <v-btn large icon @click="$router.push('/')" flat>
-        <img src="~/assets/logo.png"/>
+        <img style="max-width: 50px;" src="~/assets/logo.png"/>
       </v-btn>
 
       <v-spacer />
