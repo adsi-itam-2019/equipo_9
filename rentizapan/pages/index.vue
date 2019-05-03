@@ -2,7 +2,7 @@
 <v-container>
  <h1 class="display-3 font-weight-light">Encuentra tu casa ideal</h1>
   <v-layout align-start justify-space-between row wrap fill-height>
-    <v-flex pr-4 py-4 xs4 sm4 v-for="(card, i) in cards" :key="i"  @click="$router.push(`/property/${card.id}`)">
+    <v-flex pr-4 py-4 xs12 sm4 v-for="(card, i) in cards" :key="i"  @click="$router.push(`/property/${card.id}`)">
            <v-card>
         <v-img
           class="white--text"
@@ -31,7 +31,7 @@
   export default {
     data: () => ({
       cards: [
-        { title: 'Casa no.1', address: 'Guerrero no. 12', price:'$1,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.98', address: 'Guerrero no. 12', price:'$1,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
         { title: 'Casa no.2', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'2' },
         { title: 'Casa no.43', address: 'Guerrero no. 321', price:'$3,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'3' },
         { title: 'Casa no.19', address: 'Guerrero no. 465', price:'$4,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'4' },
