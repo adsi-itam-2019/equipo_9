@@ -5,8 +5,12 @@
       app
       color="#FCAF1F"
     >
-      <v-toolbar-title v-text="title" @click="$router.push('/')"/>
+      <v-btn large icon @click="$router.push('/')" flat>
+        <img src="~/assets/logo.png"/>
+      </v-btn>
+
       <v-spacer />
+
       <v-btn flat>
         Anúnciate
       </v-btn>
@@ -33,6 +37,7 @@
 </template>
 
 <script>
+import logo from '~/assets/logo.png'
 export default {
   data() {
     return {
