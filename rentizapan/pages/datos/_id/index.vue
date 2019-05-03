@@ -1,45 +1,40 @@
 <template>
   <v-container px-5>
+    <h2 class="display-2 font-weight-light mb-5 ">¡Déjanos tus datos!</h2>
     <v-form
       ref="form"
       v-model="valid"
-      lazy-validation=true
     >
       <v-text-field
-        v-model="name"
         :rules="nameRules"
         label="Nombre"
         required
       ></v-text-field>
       
       <v-text-field
-        v-model="apellidos"
         :rules="apRules"
         label="Apellidos"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="email"
         :rules="emailRules"
         label="E-mail"
         required
       ></v-text-field>
       
       <v-text-field
-        v-model="email2"
         :rules="copyRules"
         label="Confirma tu E-mail"
         required
       ></v-text-field>
 
-        <v-radio-group v-model="boolean" row :rules="test">
+        <v-radio-group row :rules="test">
           <v-radio label="Hombre" value="hom"></v-radio>
           <v-radio label="Mujer" value="muj"></v-radio>
         </v-radio-group>
     <v-textarea
       name="msg"
-      box
       label="Escriba un breve mensaje explicando por qué le interesa la propiedad"
       auto-grow
       value=""
