@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _6b460ea4 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
-const _009fa264 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
-const _5815fe57 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _7f3152f4 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
+const _000ee1f6 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
+const _1b0b4a2f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -82,15 +82,15 @@ export function createRouter() {
 
     routes: [{
       path: "/datos/:id?",
-      component: _6b460ea4,
+      component: _7f3152f4,
       name: "datos-id"
     }, {
       path: "/property/:id?",
-      component: _009fa264,
+      component: _000ee1f6,
       name: "property-id"
     }, {
       path: "/",
-      component: _5815fe57,
+      component: _1b0b4a2f,
       name: "index"
     }],
 
