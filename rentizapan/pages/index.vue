@@ -32,9 +32,23 @@
     data: () => ({
       cards: [
         { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
-        { title: 'Casa no.2', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', id:2 },
-        { title: 'Casa no.3', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', id: 3 },
-        { title: 'Casa no.4', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', id: 4 }
+        { title: 'Casa no.2', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
+        { title: 'Casa no.1', address: 'Guerrero no. 24', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' }
       ]
     })
   }
