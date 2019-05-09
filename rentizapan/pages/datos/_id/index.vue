@@ -28,12 +28,14 @@
           <v-radio label="Hombre" value="hom"></v-radio>
           <v-radio label="Mujer" value="muj"></v-radio>
         </v-radio-group>
+
         <v-textarea
           name="msg"
           label="Escriba un breve mensaje explicando por qué le interesa la propiedad"
           auto-grow
           value=""
         ></v-textarea>
+
         <v-btn
           :disabled="!valid"
           dark
@@ -43,6 +45,7 @@
         >
           Contactar
         </v-btn>
+
       </v-flex>
     </v-layout>
       
@@ -91,7 +94,7 @@
       ],
       email: '',  
       emailRules: [
-        v => !!v || 'Proporcione un E-mail',
+        v => !!v || 'Requerido',
         v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un e-mail válido del ITAM'
       ],
       select: null,
