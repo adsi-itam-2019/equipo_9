@@ -99,7 +99,7 @@
 
         <v-layout row wrap>
           <v-flex xs12 pa-0>
-            <v-btn large dark color="#4069B3" @click="$router.push(`/datos/`)">Contactar</v-btn>
+            <v-btn large dark color="#4069B3" @click="$router.push(`/datos/${$route.params.id}`)">Contactar</v-btn>
           </v-flex>
         </v-layout>
 
