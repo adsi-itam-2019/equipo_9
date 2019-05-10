@@ -13,7 +13,6 @@
        :rules="emailRules"
        label="Correo"
        required
-       solo
       ></v-text-field>
       <v-text-field
       prepend-inner-icon="lock"
@@ -22,15 +21,17 @@
        label="Contraseña"
        type = 'Password'
        required
-       solo
       ></v-text-field>
 
       <v-btn
-      class ="white--text"
-      color="#4069B3"
-     >
-     Aceptar
-   </v-btn>
+        class="white--text"
+        color="#4069B3"
+        :loading="loading"
+        :disabled="disableButton || loading"
+        @click="login"
+      >
+        Aceptar
+      </v-btn>
     </v-form>
   </v-container>
 
@@ -38,18 +39,47 @@
 
 
 <script>
-  export default {
-    data: () => ({
-        valid:true,
-        email: '',
-        emailRules:[
-            v => !!v || 'Proporcione un correo',
-        ],
+import * as firebase from 'firebase'
+export default {
+  data () {
+    return {
+      valid:true,
+      email: '',
+      emailRules:[
+          v => !!v || 'Proporcione un correo',
+      ],
+      pass:'',
+      passRules:[
+        v => !!v || 'Porfavor ingrese su contraseña',
+      ],
+      loading: false
+    }
+  },
+  computed: {
+    disableButton () {
+      return this.email === '' || this.pass === ''
+    }
+  },
+  methods: {
+    async login () {
+      if (this.$refs.form.validate()) {
+        try {
 
-        pass:'',
-        passRules:[
-          v => !!v || 'Porfavor ingrese su contraseña',
-        ]
-    }),
+          this.loading = true
+          let user = {
+            email: this.email,
+            pass: this.pass
+          }
+          await this.$store.dispatch('login', user)
+          this.loading = false
+          this.$router.push('/')
+
+        } catch (error) {
+          this.loading = false
+          alert(error.message)
+        }
+      }
+    }
   }
+}
 </script>

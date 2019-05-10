@@ -11,14 +11,16 @@
 
       <v-spacer />
 
-      <v-btn flat>
-        Anúnciate
+      <v-btn flat
+      @click="goTo">
+        anúncia tu propiedad
       </v-btn>
-      <v-btn flat>
-        Sign up
-      </v-btn>
-      <v-btn flat>
-        Login
+
+      <v-btn 
+      outline
+      v-if="authenticated"
+      @click="logout">
+        cerrar sesión
       </v-btn>
     </v-toolbar>
 
@@ -39,11 +41,35 @@
 <script>
 import logo from '~/assets/logo.png'
 export default {
-  // middleware: 'auth',
   data() {
     return {
       title: 'LOGO'
     }
+  },
+  computed: {
+    authenticated () {
+      return this.$store.getters.getUser
+    }
+  },
+  methods: {
+    async logout () {
+      try {
+        await this.$store.dispatch('logout')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    goTo () {
+      if (this.authenticated) {
+        // this.$router.push('/agrega-propiedad')
+        this.$router.push('/')
+      } else {
+        this.$router.push('/login')
+      }
+    }
+  },
+  mounted () {
+    this.$store.dispatch('checkUser')
   }
 }
 </script>

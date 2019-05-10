@@ -1,5 +1,5 @@
-import firebase from 'firebase/app';
-
+import * as firebase from 'firebase'
+export const strict = false
 export const state = () => ({
 	propiedades: [
     { title: 'Casa no.98', address: 'Guerrero no. 12', price:'$1,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'1' },
@@ -26,8 +26,8 @@ export const state = () => ({
 
 export const mutations = {
 
-  SET_USER (state, user) {
-    state.user = user
+  SET_USER (state, payload) {
+    state.user = payload
   },
 
 	SET_PROPERTIES (state, propiedades) {
@@ -40,13 +40,12 @@ export const actions = {
 
 	createUser ({}, user) {
     return new Promise((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+      firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
         .then(newUser => {
           firebase.firestore().collection('users').add({
             email: user.email, 
 						nombre: user.nombre,
 						apellidos: user.apellidos,
-						fecha_nacimiento: user.fecha_nacimiento,
             authId: newUser.user.uid
           })
 					.then(res => {
@@ -62,15 +61,29 @@ export const actions = {
     })
   },
 
-  login ({ commit }, user) {
+  login ({}, user) {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
         .then(resp => {
-          commit('SET_USER', resp)
           resolve(resp)
         })
         .catch(function(error) {
-          reject('Error login: ', error)
+          console.log(error)
+          reject(error)
+        })
+    })
+  },
+
+  logout ({ commit }) {
+    return new Promise((resolve, reject) => {
+      firebase.auth().signOut()
+        .then(res => {
+          commit('SET_USER', null)
+          resolve(res)
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
         })
     })
   },
@@ -94,13 +107,27 @@ export const actions = {
       })
       commit('SET_PROPERTIES', propiedades)
     })
-	}
+  },
+  
+  checkUser ({ commit }) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        commit('SET_USER', user)
+      } else {
+        commit('SET_USER', null)
+      }
+    })
+  }
 }
 
 export const getters = {
 
   getPropiedades (state) {
     return state.propiedades
+  },
+
+  getUser (state) {
+    return state.user
   }
 
 }
