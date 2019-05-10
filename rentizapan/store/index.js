@@ -20,10 +20,15 @@ export const state = () => ({
     { title: 'Casa no.35', address: 'Guerrero no. 912', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'16' },
     { title: 'Casa no.90', address: 'Guerrero no. 513', price:'$8,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'17' },
     { title: 'Casa no.75', address: 'Guerrero no. 892', price:'$2,000', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', id:'18' }
-  ]
+  ],
+  user: null
 })
 
 export const mutations = {
+
+  SET_USER (state, user) {
+    state.user = user
+  },
 
 	SET_PROPERTIES (state, propiedades) {
 		state.propiedades = propiedades
@@ -57,6 +62,19 @@ export const actions = {
     })
   },
 
+  login ({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
+        .then(resp => {
+          commit('SET_USER', resp)
+          resolve(resp)
+        })
+        .catch(function(error) {
+          reject('Error login: ', error)
+        })
+    })
+  },
+
 	addProperty ({}, property) {
 		return new Promise((resolve, reject) => {
       firebase.firestore().collection('propiedades').add(property)
@@ -80,8 +98,10 @@ export const actions = {
 }
 
 export const getters = {
+
   getPropiedades (state) {
     return state.propiedades
   }
+
 }
   

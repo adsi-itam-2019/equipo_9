@@ -39,6 +39,7 @@
 <script>
 import logo from '~/assets/logo.png'
 export default {
+  middleware: 'auth',
   data() {
     return {
       title: 'LOGO'
