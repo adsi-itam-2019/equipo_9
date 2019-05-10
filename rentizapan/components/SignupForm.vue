@@ -9,14 +9,14 @@
     >
     <v-text-field
      v-model="nombre"
-     :rules='[]'
+     :rules='nomRules'
      label="Nombre"
      required
      solo
     ></v-text-field>
     <v-text-field
      v-model="apellido"
-     :rules='[]'
+     :rules='apRules'
      label="Apellido"
      required
      solo
@@ -30,7 +30,7 @@
       ></v-text-field>
       <v-text-field
        v-model="email2"
-       :rules="emailRules"
+       :rules="emailRules2"
        label="Confirma tu correo"
        required
        solo
@@ -45,7 +45,7 @@
       ></v-text-field>
       <v-text-field
        v-model="pass2"
-       :rules='passRules'
+       :rules='passRules2'
        label="Confirma tu contraseña"
        type = 'Password'
        required
@@ -53,6 +53,7 @@
       ></v-text-field>
 
       <v-btn
+      class ="white--text"
       color="#4069B3"
      >
      Aceptar
@@ -70,15 +71,23 @@
         email: '',
         email2:'',
         emailRules:[
-            v => !!v || 'Proporcione un E-mail',
+            v => !!v || 'Proporcione un correo',
+        ],
+        emailRules2: [
+          v => !!v || 'Confirme su correo',
         ],
         pass:'',
         pass2:'',
         passRules:[
-          v => !!v || 'Porfavor ingrese su contraseña',
+          v => !!v || 'Ingrese su contraseña',
+        ],
+        passRules2:[
+          v => !!v || 'Confirme su contraseña',
         ],
         nombre:'',
-        apellido:''
+        nomRules: [  v => !!v || 'Ingrese su nombre',],
+        apellido:'',
+        apRules: [ v => !!v || 'Ingrese su apellido',]
     }),
   }
 </script>

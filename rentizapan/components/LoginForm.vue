@@ -26,6 +26,7 @@
       ></v-text-field>
 
       <v-btn
+      class ="white--text"
       color="#4069B3"
      >
      Aceptar
@@ -42,8 +43,9 @@
         valid:true,
         email: '',
         emailRules:[
-            v => !!v || 'Proporcione un E-mail',
+            v => !!v || 'Proporcione un correo',
         ],
+
         pass:'',
         passRules:[
           v => !!v || 'Porfavor ingrese su contraseña',
