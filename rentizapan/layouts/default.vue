@@ -13,7 +13,7 @@
 
       <v-btn flat
       @click="goTo">
-        anúncia tu propiedad
+        anuncia tu propiedad
       </v-btn>
 
       <v-btn 
