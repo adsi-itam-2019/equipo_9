@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
+const _2f0227e2 = () => interopDefault(import('../pages/arrendador/index.vue' /* webpackChunkName: "pages/arrendador/index" */))
 const _bd30cd86 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
-const _6fe022d0 = () => interopDefault(import('../pages/arrendador/agregar_propiedad.vue' /* webpackChunkName: "pages/arrendador/agregar_propiedad" */))
 const _722eee7a = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
 const _69fad582 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
 const _e102f9ba = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -83,13 +83,13 @@ export function createRouter() {
     scrollBehavior,
 
     routes: [{
+      path: "/arrendador",
+      component: _2f0227e2,
+      name: "arrendador"
+    }, {
       path: "/login",
       component: _bd30cd86,
       name: "login"
-    }, {
-      path: "/arrendador/agregar_propiedad",
-      component: _6fe022d0,
-      name: "arrendador-agregar_propiedad"
     }, {
       path: "/datos/:id?",
       component: _722eee7a,

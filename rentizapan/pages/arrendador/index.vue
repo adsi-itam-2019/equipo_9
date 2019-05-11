@@ -1,10 +1,9 @@
 <template>
   <v-container>
   <h1 class="display-3 font-weight-light">Agrega una propiedad</h1>
-   <v-layout row>
-    <v-flex xs12 sm6>
+   <v-layout class="mt-2" row wrap>
+    <v-flex xs12 sm5>
     <v-form
-      class="mt-3"
       ref="form"
       v-model ="valid"
       lazy-validation
@@ -49,31 +48,32 @@
         ></v-text-field>
       </v-form>
   </v-flex>
-    <v-flex class="mx-5" xs12 sm6>
+    <v-flex offset-sm1 offset-xs0 xs12 sm5>
       <h2 class="headline font-weight-light"> Seleccione los servicios que tiene la propiedad</h2>
       <v-form
       ref="form"
       v-model ="valid"
       lazy-validation>
       <v-container>
-      <v-layout row wrap>
-        <v-flex xs3 sm2>
+      <v-layout v-bind="binding" wrap align-start justify-space-between>
+        <v-flex xs1 sm4>
         <v-checkbox class ="mx-2" v-model="servicios" label="Cocina" value="cocina"></v-checkbox>
         </v-flex>
-      <v-flex xs3 sm2>
+      <v-flex xs1 sm4>
           <v-checkbox class ="mx-2" v-model="servicios" label="Wi-Fi" value="wifi"></v-checkbox>
       </v-flex>
-      <v-flex xs3 sm2>
+      <v-flex xs1 sm4>
         <v-checkbox class ="mx-2" v-model="servicios" label="Lavadora" value="lavadora"></v-checkbox>
       </v-flex>
-      <v-flex xs3 sm2>
+      <v-flex xs1 sm4>
         <v-checkbox class ="mx-2" v-model="servicios" label="Secadora" value="secadora"></v-checkbox>
       </v-flex>
-      <v-flex xs3 sm2>
+      <v-flex xs1 sm4>
         <v-checkbox class ="mx-2" v-model="servicios" label="Estacionamiento" value="estacionamiento"></v-checkbox>
       </v-flex>
+      <h2 class="headline font-weight-light">Agregue una descripción de la propiedad</h2>
       </v-layout>
-    </v-container>
+      </v-container>
       </v-form>
     </v-flex>
     </v-layout>
@@ -91,7 +91,7 @@ export default {
       numInt: '',
       colonia: '',
       del: '',
-      servicios: '',
+      servicios: [],
       loading: false
   }),
   methods: {
@@ -114,6 +114,13 @@ export default {
         console.log('Invalid form')
       }
     }
-  }
+  },
+  computed: {
+      binding () {
+        const binding = {}
+        if (this.$vuetify.breakpoint.xs) binding.column = true
+        return binding
+      }
+    }
 }
 </script>
