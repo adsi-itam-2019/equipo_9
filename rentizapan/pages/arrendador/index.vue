@@ -1,8 +1,9 @@
 <template>
   <v-container>
   <h1 class="display-3 font-weight-light">Agrega una propiedad</h1>
-   <v-layout class="mt-2" row wrap>
-    <v-flex xs12 sm5>
+   <v-layout class="mt-3" row wrap>
+    <v-flex class="mt-4" xs12>
+    <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
     <v-form
       ref="form"
       v-model ="valid"
@@ -10,21 +11,21 @@
       >
       <v-text-field
        v-model="titulo"
-       :rules='[]'
+       :rules='rulesTitulo'
        label="Título"
        type="text"
        required
       ></v-text-field>
       <v-text-field
        v-model="calle"
-       :rules='[]'
+       :rules='rulesCalle'
        label="Calle"
        type="text"
        required
       ></v-text-field>
         <v-text-field
          v-model="numero"
-         :rules="[]"
+         :rules="rulesNum"
          label="Número"
          type="text"
          required
@@ -36,46 +37,111 @@
         ></v-text-field>
         <v-text-field
          v-model="colonia"
-         :rules='[]'
+         :rules='rulesColonia'
          label="Colonia"
          required
         ></v-text-field>
         <v-text-field
          v-model="del"
-         :rules='[]'
+         :rules='rulesDel'
          label="Delegación"
          required
         ></v-text-field>
-      </v-form>
-  </v-flex>
-    <v-flex offset-sm1 offset-xs0 xs12 sm5>
       <h2 class="headline font-weight-light"> Seleccione los servicios que tiene la propiedad</h2>
-      <v-form
-      ref="form"
-      v-model ="valid"
-      lazy-validation>
       <v-container>
       <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex xs1 sm4>
         <v-checkbox class ="mx-2" v-model="servicios" label="Cocina" value="cocina"></v-checkbox>
         </v-flex>
-      <v-flex xs1 sm4>
-          <v-checkbox class ="mx-2" v-model="servicios" label="Wi-Fi" value="wifi"></v-checkbox>
-      </v-flex>
-      <v-flex xs1 sm4>
-        <v-checkbox class ="mx-2" v-model="servicios" label="Lavadora" value="lavadora"></v-checkbox>
-      </v-flex>
-      <v-flex xs1 sm4>
-        <v-checkbox class ="mx-2" v-model="servicios" label="Secadora" value="secadora"></v-checkbox>
-      </v-flex>
-      <v-flex xs1 sm4>
-        <v-checkbox class ="mx-2" v-model="servicios" label="Estacionamiento" value="estacionamiento"></v-checkbox>
-      </v-flex>
-      <h2 class="headline font-weight-light">Agregue una descripción de la propiedad</h2>
+        <v-flex xs1 sm4>
+            <v-checkbox class ="mx-2" v-model="servicios" label="Wi-Fi" value="wifi"></v-checkbox>
+        </v-flex>
+        <v-flex xs1 sm4>
+          <v-checkbox class ="mx-2" v-model="servicios" label="Lavadora" value="lavadora"></v-checkbox>
+        </v-flex>
+        <v-flex xs1 sm4>
+          <v-checkbox class ="mx-2" v-model="servicios" label="Secadora" value="secadora"></v-checkbox>
+        </v-flex>
+        <v-flex xs1 sm4>
+          <v-checkbox class ="mx-2" v-model="servicios" label="Estacionamiento" value="estacionamiento"></v-checkbox>
+        </v-flex>
       </v-layout>
       </v-container>
+      <h2 class="headline font-weight-light">Agregue una descripción de la propiedad</h2>
+      <v-container>
+        <v-layout v-bind="binding" wrap align-start justify-space-between>
+        <v-flex xs1 sm4>
+          <v-select
+             v-model="descripcion[0]"
+             :items="[1,2,3,4,5,6,7,8,9,10]"
+             :rules="rulesCuartos"
+             label="Número de cuartos"
+             required
+          ></v-select>
+        </v-flex>
+        <v-flex xs1 sm4>
+          <v-select
+             v-model="descripcion[1]"
+             :items="[1,2,3,4,5,6,7,8,9,10]"
+             :rules="rulesCamas"
+             label="Número de camas"
+             required
+          ></v-select>
+         </v-flex>
+        <v-flex xs1 sm4>
+          <v-select
+             v-model="descripcion[2]"
+             :items="[1,2,3,4,5,6,7,8,9,10]"
+             :rules="rulesBaños"
+             label="Número de baños"
+             required
+          ></v-select>
+        </v-flex>
+        </v-layout>
+      </v-container>
+      <v-container>
+      <h2 class="headline font-weight-light">Incluya una fotografía de su propiedad</h2>
+      <v-layout v-bind="binding" wrap align-start justify-space-between>
+        <v-flex class = "mt-3" xs12 sm6>
+          <v-btn color="#4069B3" class = "white--text" @click="pickFile">Suba una foto</v-btn>
+          <input type ="file" ref="inputFile" @change="filePicked" accept="image/*" style="display:none;"></input>
+        </v-flex>
+        <v-flex xs12 sm6>
+          <v-card>
+            <v-img contain :src="imgUrl"></v-img>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      </v-container>
+      <v-layout row>
+        <v-flex xs4>
+          <v-subheader>Renta por mes</v-subheader>
+        </v-flex>
+        <v-flex xs8>
+          <v-text-field
+            solo
+            label="Renta"
+            type ="number"
+            prefix="$"
+            required
+            :rules = "rulesRenta"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
       </v-form>
     </v-flex>
+    <v-layout row right-align justify-end>
+      <v-flex xs2>
+        <v-btn
+        class ="primary"
+        type="submit"
+        :loading="loading"
+        :disabled="loading"
+        @click.prevent="agregarPropiedad">
+        Agregar Propiedad
+      </v-btn>
+      </v-flex>
+    </v-layout>
     </v-layout>
   </v-container>
 </template>
@@ -92,20 +158,40 @@ export default {
       colonia: '',
       del: '',
       servicios: [],
+      descripcion:[0,0,0],
+      imgUrl :'',
+      image: null,
+      rulesTitulo :[ v => !!v || 'Ingrese un título para su propiedad',],
+      rulesCalle : [ v => !!v || 'Ingrese la calle en dónde se encuentra la propiedad',],
+      rulesNum : [v => !!v || 'Ingrese el número en el que se encuentra la propiedad (o alguna referencia)',],
+      rulesColonia: [v => !!v || 'Ingrese la colonia dónde se encuentra la propiedad',],
+      rulesDel: [v => !!v || 'Ingrese la delegación dónde se encuentra la propiedad',],
+      rulesCuartos :[v => !!v || 'Indique el numero de cuartos',],
+      rulesCamas : [v => !![v & 0] || 'Indique el numero de camas',],
+      rulesBaños : [v => !!v || 'Indique el numero de baños',],
+      rulesRenta : [v => !!v || 'Indique lo que espera recibir de renta por mes',],
       loading: false
   }),
   methods: {
-    async signup () {
+    async agregarPropiedad () {
       if (this.$refs.form.validate()) {
         this.loading = true
+        let user = this.$store.getters.getUser
+        console.log(user)
         let propiedad = {
-          email: this.email,
-          pass: this.pass,
-          nombre: this.nombre,
-          apellidos: this.apellidos,
+          uid : user.uid,
+          titulo: this.titulo,
+          calle: this.calle,
+          numero: this.numero,
+          numInt: this.numInt,
+          colonia: this.colonia,
+          delegacion: this.del,
+          servicios: this.servicios,
+          descripcion : this.descripcion,
+          image : this.image
         }
-        await this.$store.dispatch('createUser', user)
-        this.$router.push('/')
+        await this.$store.dispatch('addProperty', propiedad)
+        //this.$router.push('/')
         // TODO: Crear ruta y formulario
         // this.router.push('/agrega-propiedad')
         this.loading = false
@@ -113,7 +199,24 @@ export default {
         this.loading = false
         console.log('Invalid form')
       }
+    },
+    pickFile(){
+      this.$refs.inputFile.click()
+    },
+    filePicked(event){
+      const files = event.target.files
+      let fileName = files[0].name
+      if (fileName.lastIndexOf('.') <= 0){
+        return alert("Por favor suba un archivo de imagen válido")
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () =>{
+        this.imgUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image =files[0]
     }
+
   },
   computed: {
       binding () {
