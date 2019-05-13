@@ -11,7 +11,7 @@
           label="Nombre"
           required
         ></v-text-field>
-        
+
         <v-text-field
           :rules="apRules"
           label="Apellidos"
@@ -23,7 +23,7 @@
           label="E-mail"
           required
         ></v-text-field>
-      
+
         <v-radio-group row :rules="test">
           <v-radio label="Hombre" value="hom"></v-radio>
           <v-radio label="Mujer" value="muj"></v-radio>
@@ -48,7 +48,7 @@
 
       </v-flex>
     </v-layout>
-      
+
     </v-form>
 
     <v-dialog
@@ -59,7 +59,7 @@
         <v-card-title class="headline" >¡Gracias!</v-card-title>
 
         <v-card-text>
-          Le propietario se pondrá en contacto contigo pornto.
+          El propietario se pondrá en contacto contigo pornto.
         </v-card-text>
 
         <v-card-actions>
@@ -92,7 +92,7 @@
         v => !!v || 'Requerido',
         v => /^[^0-9_/!@#$%&*\(\)\-\\:;.,><\[\]\{\}]+$/.test(v)|| 'Escriba un apellido válido'
       ],
-      email: '',  
+      email: '',
       emailRules: [
         v => !!v || 'Requerido',
         v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un e-mail válido del ITAM'
