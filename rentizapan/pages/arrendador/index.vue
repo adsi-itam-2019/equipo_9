@@ -1,6 +1,6 @@
 <template>
   <v-container>
-  <h1 class="display-3 font-weight-light">Agrega una propiedad</h1>
+  <h1 class="display-3 font-weight-light">Agregue una propiedad</h1>
    <v-layout class="mt-3" row wrap>
     <v-flex class="mt-4" xs12>
     <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
@@ -51,19 +51,19 @@
       <v-container>
       <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex xs1 sm4>
-        <v-checkbox class ="mx-2" v-model="servicios" label="Cocina" value="cocina"></v-checkbox>
+        <v-checkbox append-icon='local_dining' class ="mx-2" v-model="servicios" label="Cocina" value="[Cocina, local_dining]"></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-            <v-checkbox class ="mx-2" v-model="servicios" label="Wi-Fi" value="wifi"></v-checkbox>
+            <v-checkbox append-icon='wifi' class ="mx-2" v-model="servicios" label="Wi-Fi" value="[Wi-Fi, wifi]"></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox class ="mx-2" v-model="servicios" label="Lavadora" value="lavadora"></v-checkbox>
+          <v-checkbox append-icon='local_laundry_service' class ="mx-2" v-model="servicios" label="Lavadora" value="[Lavadora, local_laundry_service]"></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox class ="mx-2" v-model="servicios" label="Secadora" value="secadora"></v-checkbox>
+          <v-checkbox append-icon='trip_origin' class ="mx-2" v-model="servicios" label="Secadora" value="[Secadora, trip_origin]"></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox class ="mx-2" v-model="servicios" label="Estacionamiento" value="estacionamiento"></v-checkbox>
+          <v-checkbox append-icon='directions_car' class ="mx-2" v-model="servicios" label="Estacionamiento" value="[Estacionamiento, directions_car]"></v-checkbox>
         </v-flex>
       </v-layout>
       </v-container>
@@ -131,7 +131,7 @@
       </v-form>
     </v-flex>
     <v-layout row right-align justify-end>
-      <v-flex xs2>
+      <v-flex sm5 xs7 md2>
         <v-btn
         class ="primary"
         type="submit"
@@ -143,6 +143,31 @@
       </v-flex>
     </v-layout>
     </v-layout>
+
+  <v-dialog
+    v-model = "dialog"
+    width = 500
+  >
+    <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+        ¡Propiedad agregada exitosamente!
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="success"
+            flat
+            @click="aceptar"
+          >
+            Aceptar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -170,7 +195,8 @@ export default {
       rulesCamas : [v => !![v & 0] || 'Indique el numero de camas',],
       rulesBaños : [v => !!v || 'Indique el numero de baños',],
       rulesRenta : [v => !!v || 'Indique lo que espera recibir de renta por mes',],
-      loading: false
+      loading: false,
+      dialog: false
   }),
   methods: {
     async agregarPropiedad () {
@@ -191,9 +217,7 @@ export default {
           image : this.image
         }
         await this.$store.dispatch('addProperty', propiedad)
-        //this.$router.push('/')
-        // TODO: Crear ruta y formulario
-        // this.router.push('/agrega-propiedad')
+        this.dialog = true
         this.loading = false
       } else {
         this.loading = false
@@ -214,7 +238,12 @@ export default {
         this.imgUrl = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      this.image =files[0]
+      this.image = files[0]
+    },
+    aceptar(){
+      this.dialog = false
+      //TODO: hacer perfil
+      //this.router.push('/')
     }
 
   },
