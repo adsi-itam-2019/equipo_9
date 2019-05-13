@@ -100,7 +100,8 @@ export const actions = {
 			colonia: property.colonia,
 			delegacion: property.delegacion,
 			servicios: property.servicios,
-			descripcion : property.descripcion,
+      descripcion : property.descripcion,
+      precio: property.precio
 		}
 		return new Promise((resolve, reject) => {
       firebase.firestore().collection('propiedades').add(newProperty)
@@ -125,7 +126,7 @@ export const actions = {
 	},
 
 	fetchProperties ({ commit }) {
-		firebase.firestore().collection('asistencias').onSnapshot(snap => {
+		firebase.firestore().collection('propiedades').onSnapshot(snap => {
       let propiedades = []
       snap.forEach(elem => {
         propiedades.push({
@@ -156,6 +157,12 @@ export const getters = {
 
   getUser (state) {
     return state.user
+  },
+
+  getPropiedadById: (state) => (id) => {
+    return state.propiedades.find(elem => {
+      return elem.id === id
+    })
   }
 
 }

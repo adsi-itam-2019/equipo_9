@@ -3,7 +3,18 @@
 
   <h1 class="display-3 font-weight-light">Encuentra tu casa ideal</h1>
 
-  <v-layout row wrap justify-center>
+  <v-layout row wrap justify-center v-if="loading">
+    <v-flex xs12>
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="grey"
+        indeterminate
+      ></v-progress-circular>
+    </v-flex>
+  </v-layout>
+
+  <v-layout row wrap v-else>
     <v-flex
     xs12 
     sm6 
@@ -16,14 +27,14 @@
         <v-img
           class="white--text"
           height="200px"
-          :src="card.src"
+          :src="card.img"
         >
         </v-img>
         <v-card-title>
           <div>
-            <span class= "title" v-text="card.title"></span><br>
-            <span v-text="card.address"></span><br>
-            <span class="grey--text" v-text="card.price"></span>
+            <span class= "title">{{ card.titulo }}</span><br>
+            <span v-text="card.calle"></span> <span>{{ card.numero }}</span><br>
+            <span class="font-weight-bold">{{ formatNumber(card.precio) }} mensual</span>
           </div>
         </v-card-title>
         <v-card-actions>
@@ -43,16 +54,27 @@
 
 
 <script>
+import numeral from 'numeral'
 export default {
   data () {
     return {
-
+      loading: false
     }
   },
   computed: {
     propiedades () {
       return this.$store.getters.getPropiedades
     }
+  },
+  methods: {
+    formatNumber (val) {
+      return numeral(val).format('$0,0.00')
+    }
+  },
+  async mounted () {
+    this.loading = true
+    await this.$store.dispatch('fetchProperties')
+    this.loading = false
   }
 }
 </script>

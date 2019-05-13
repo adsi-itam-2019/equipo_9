@@ -104,7 +104,7 @@
       <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex class = "mt-3" xs12 sm6>
           <v-btn color="#4069B3" class = "white--text" @click="pickFile">Suba una foto</v-btn>
-          <input type ="file" ref="inputFile" @change="filePicked" accept="image/*" style="display:none;"></input>
+          <input type ="file" ref="inputFile" @change="filePicked" accept="image/*" style="display:none;" />
         </v-flex>
         <v-flex xs12 sm6>
           <v-card>
@@ -119,6 +119,7 @@
         </v-flex>
         <v-flex xs8>
           <v-text-field
+            v-model="precio"
             solo
             label="Renta"
             type ="number"
@@ -182,6 +183,7 @@ export default {
       numInt: '',
       colonia: '',
       del: '',
+      precio: '',
       servicios: [],
       descripcion:[0,0,0],
       imgUrl :'',
@@ -214,6 +216,7 @@ export default {
           delegacion: this.del,
           servicios: this.servicios,
           descripcion : this.descripcion,
+          precio: this.precio,
           image : this.image
         }
         await this.$store.dispatch('addProperty', propiedad)
@@ -243,16 +246,16 @@ export default {
     aceptar(){
       this.dialog = false
       //TODO: hacer perfil
-      //this.router.push('/')
+      this.router.push('/')
     }
 
   },
   computed: {
-      binding () {
-        const binding = {}
-        if (this.$vuetify.breakpoint.xs) binding.column = true
-        return binding
-      }
+    binding () {
+      const binding = {}
+      if (this.$vuetify.breakpoint.xs) binding.column = true
+      return binding
     }
+  }
 }
 </script>

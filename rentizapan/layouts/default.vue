@@ -61,8 +61,7 @@ export default {
     },
     goTo () {
       if (this.authenticated) {
-        // this.$router.push('/agrega-propiedad')
-        this.$router.push('/')
+        this.$router.push('/arrendador')
       } else {
         this.$router.push('/login')
       }
