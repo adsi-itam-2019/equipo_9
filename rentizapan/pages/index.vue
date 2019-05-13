@@ -16,18 +16,18 @@
 
   <v-layout row wrap v-else>
     <v-flex
-    xs12 
-    sm6 
+    xs12
+    sm6
     md4
     class="clickable"
-    v-for="(card, i) in propiedades" 
-    :key="i"  
+    v-for="(card, i) in propiedades"
+    :key="i"
     @click="$router.push(`/property/${card.id}`)">
       <v-card>
         <v-img
           class="white--text"
           height="200px"
-          :src="card.img"
+          :src="card.imgUrl"
         >
         </v-img>
         <v-card-title>
@@ -38,17 +38,17 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn 
-          flat 
+          <v-btn
+          flat
           color="#4069B3"
           dark>
             Más información
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-flex> 
+    </v-flex>
   </v-layout>
-  
+
 </v-container>
 </template>
 
@@ -84,4 +84,3 @@ export default {
   cursor: pointer;
 }
 </style>
-
