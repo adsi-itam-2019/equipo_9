@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _7264316e = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
-const _7f3152f4 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
-const _000ee1f6 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
-const _1b0b4a2f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _2f0227e2 = () => interopDefault(import('../pages/arrendador/index.vue' /* webpackChunkName: "pages/arrendador/index" */))
+const _bd30cd86 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
+const _722eee7a = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
+const _69fad582 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
+const _e102f9ba = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -82,20 +83,24 @@ export function createRouter() {
     scrollBehavior,
 
     routes: [{
+      path: "/arrendador",
+      component: _2f0227e2,
+      name: "arrendador"
+    }, {
       path: "/login",
-      component: _7264316e,
+      component: _bd30cd86,
       name: "login"
     }, {
       path: "/datos/:id?",
-      component: _7f3152f4,
+      component: _722eee7a,
       name: "datos-id"
     }, {
       path: "/property/:id?",
-      component: _000ee1f6,
+      component: _69fad582,
       name: "property-id"
     }, {
       path: "/",
-      component: _1b0b4a2f,
+      component: _e102f9ba,
       name: "index"
     }],
 

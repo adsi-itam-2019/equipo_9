@@ -43,7 +43,7 @@ export const actions = {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
         .then(newUser => {
           firebase.firestore().collection('users').add({
-            email: user.email, 
+            email: user.email,
 						nombre: user.nombre,
 						apellidos: user.apellidos,
             authId: newUser.user.uid
@@ -89,15 +89,44 @@ export const actions = {
   },
 
 	addProperty ({}, property) {
+		let key
+		let imageUrl
+		let newProperty = {
+			uid : property.uid,
+			titulo: property.titulo,
+			calle: property.calle,
+			numero: property.numero,
+			numInt: property.numInt,
+			colonia: property.colonia,
+			delegacion: property.delegacion,
+			servicios: property.servicios,
+      descripcion : property.descripcion,
+      precio: property.precio
+		}
 		return new Promise((resolve, reject) => {
-      firebase.firestore().collection('propiedades').add(property)
-        .then(docRef => resolve('Propiedad agregada: ', docRef))
+      firebase.firestore().collection('propiedades').add(newProperty)
+        .then(docRef => {
+					key = docRef.id
+					const filename = property.image.name
+					const ext = filename.slice(filename.lastIndexOf('.'))
+					return firebase.storage().ref().child('casas/' + key + '.' + ext).put(property.image)
+					.then(fileData => {
+						let imgRef = fileData.metadata.fullPath
+						return firebase.storage().ref().child(imgRef).getDownloadURL().then(function(imgUrl){
+							return firebase.firestore().collection('propiedades').doc(key).update({
+								imgUrl : imgUrl
+							}).then(
+									resolve('Propiedad agregada: ', docRef)
+							)
+						})
+					})
+				})
         .catch((err) => reject(err))
     })
 	},
 
 	fetchProperties ({ commit }) {
-		firebase.firestore().collection('asistencias').onSnapshot(snap => {
+		firebase.firestore().collection('propiedades').onSnapshot(snap => {
       let propiedades = []
       snap.forEach(elem => {
         propiedades.push({
@@ -108,7 +137,7 @@ export const actions = {
       commit('SET_PROPERTIES', propiedades)
     })
   },
-  
+
   checkUser ({ commit }) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -128,7 +157,12 @@ export const getters = {
 
   getUser (state) {
     return state.user
+  },
+
+  getPropiedadById: (state) => (id) => {
+    return state.propiedades.find(elem => {
+      return elem.id === id
+    })
   }
 
 }
-  
