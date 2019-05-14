@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _b0527d54 = () => interopDefault(import('../pages/arrendador/index.vue' /* webpackChunkName: "pages/arrendador/index" */))
-const _7264316e = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
-const _7f3152f4 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
-const _000ee1f6 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
-const _1b0b4a2f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _78ef8140 = () => interopDefault(import('../pages/arrendador/index.vue' /* webpackChunkName: "pages/arrendador/index" */))
+const _63035d1f = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
+const _92bc1d48 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
+const _7432ae57 = () => interopDefault(import('../pages/perfilArrendador/_id/index.vue' /* webpackChunkName: "pages/perfilArrendador/_id/index" */))
+const _24116140 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
+const _daa94ef6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -84,23 +85,27 @@ export function createRouter() {
 
     routes: [{
       path: "/arrendador",
-      component: _b0527d54,
+      component: _78ef8140,
       name: "arrendador"
     }, {
       path: "/login",
-      component: _7264316e,
+      component: _63035d1f,
       name: "login"
     }, {
       path: "/datos/:id?",
-      component: _7f3152f4,
+      component: _92bc1d48,
       name: "datos-id"
     }, {
+      path: "/perfilArrendador/:id?",
+      component: _7432ae57,
+      name: "perfilArrendador-id"
+    }, {
       path: "/property/:id?",
-      component: _000ee1f6,
+      component: _24116140,
       name: "property-id"
     }, {
       path: "/",
-      component: _1b0b4a2f,
+      component: _daa94ef6,
       name: "index"
     }],
 
