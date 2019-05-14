@@ -6,19 +6,21 @@
       color="#FCAF1F"
     >
       <v-btn large icon @click="$router.push('/')" flat>
-        <img src="~/assets/logo.png"/>
+        <img style="max-width: 50px;" src="~/assets/logo.png"/> 
       </v-btn>
 
       <v-spacer />
 
-      <v-btn flat>
-        Anúnciate
+      <v-btn flat
+      @click="goTo">
+        anuncia tu propiedad
       </v-btn>
-      <v-btn flat>
-        Sign up
-      </v-btn>
-      <v-btn flat>
-        Login
+
+      <v-btn 
+      outline
+      v-if="authenticated"
+      @click="logout">
+        cerrar sesión
       </v-btn>
     </v-toolbar>
 
@@ -43,6 +45,30 @@ export default {
     return {
       title: 'LOGO'
     }
+  },
+  computed: {
+    authenticated () {
+      return this.$store.getters.getUser
+    }
+  },
+  methods: {
+    async logout () {
+      try {
+        await this.$store.dispatch('logout')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    goTo () {
+      if (this.authenticated) {
+        this.$router.push('/arrendador')
+      } else {
+        this.$router.push('/login')
+      }
+    }
+  },
+  mounted () {
+    this.$store.dispatch('checkUser')
   }
 }
 </script>
