@@ -34,7 +34,7 @@
           <div>
             <span class= "title">{{ card.titulo }}</span><br>
             <span v-text="card.calle"></span> <span>{{ card.numero }}</span><br>
-            <span class="font-weight-bold">{{ formatNumber(card.precio) }} mensual</span>
+            <span class="font-weight-bold">{{ formatNumber(card.precio) }} / mes</span>
           </div>
         </v-card-title>
         <v-card-actions>

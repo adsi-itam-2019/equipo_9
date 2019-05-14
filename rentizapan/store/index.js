@@ -78,7 +78,6 @@ export const actions = {
     return new Promise((resolve, reject) => {
       firebase.auth().signOut()
         .then(res => {
-          commit('SET_USER', null)
           resolve(res)
         })
         .catch(err => {

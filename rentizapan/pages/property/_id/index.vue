@@ -26,7 +26,7 @@
       </v-flex>
       <v-flex xs12 md7>
 
-        <h2 class="display-2 mb-5">{{ data.calle }} {{ data.numero }}, {{ data.colonia }}</h2>
+        <h2 class="display-2 mb-5">{{ data.titulo }}</h2>
 
         <h4 class="title mb-1">
           <v-icon class="mr-3">house</v-icon>
@@ -46,22 +46,22 @@
         </v-layout>
 
         <h4 class="title mb-1">
-          <v-icon class="mr-3">meeting_room</v-icon>
-          Impecable
+          <v-icon class="mr-3">location_on</v-icon>
+          Ubicación
         </h4>
 
         <p class="subheading pl-5 mb-4">
-          15 huéspedes anteriores han dicho que este alojamiento está impecable
+          {{ data.calle }} {{ data.numero }} - {{ data.numInt }}, {{ data.colonia }}, {{ data.delegacion }}
         </p>
 
-        <h4 class="title mb-1">
+        <!-- <h4 class="title mb-1">
           <v-icon class="mr-3">vpn_key</v-icon>
           Fantástico proceso de llegada
         </h4>
 
         <p class="subheading pl-5">
           El 100% de los huéspedes han valorado con 5 estrellas el proceso de llegada
-        </p>
+        </p> -->
 
         <h4 class="title mt-5 mb-3">
           Servicios
