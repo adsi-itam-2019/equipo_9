@@ -15,9 +15,6 @@
   </v-layout>
 
   <v-layout row wrap v-else>
-    <!-- ======= Aquí hace falta que el el for sea solo sobre 
-        las propiedades que tienen el id del arrendador 
-        que se paso en el parametro y que al click, esta se elimine ========================-->
     <v-flex
     xs12
     sm6
@@ -25,7 +22,13 @@
     class="clickable"
     v-for="(card, i) in propiedades"
     :key="i"
-    @click="$router.push(`/property/${card.id}`)">
+    
+    @click="$router.push(`/property/${card.id}`)"> <!-- 
+
+        =========== Aquí debería llamar a la función deleteCard para eliminarla ===========
+
+        @click="{deleteCard(card.id})">
+     --> 
       <v-card>
         <v-img
           class="white--text"
@@ -66,7 +69,15 @@ export default {
   },
   computed: {
     propiedades () {
-      return this.$store.getters.getPropiedades
+        /*
+        
+        ========== Aquí deberían cargar las propiedades del arrendador pasando su id ================
+
+        const id = this.$route.params.id
+        return this.$store.getters.getPropiedades['getPropiedadesArrendador'](id)*/
+
+        const id = this.$route.params.id
+        return this.$store.getters.getPropiedades
     }
   },
   methods: {

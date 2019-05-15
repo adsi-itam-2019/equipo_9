@@ -146,6 +146,25 @@ export const actions = {
       }
     })
   }
+
+  /* 
+  
+  ========== Debería eliminar la propiedad dada y reloadear la página =========
+
+
+      delete ({}, IDpropiedad) {
+        return new Promise((resolve, reject) => {
+          firebase.firestore().collection('propiedades').id(IDpropiedad).delete()
+            .then(resp => {
+              resolve(resp)
+            })
+            .catch(function(error) {
+              console.log(error)
+              reject(error)
+            })
+        })
+      }
+  */
 }
 
 export const getters = {
@@ -163,5 +182,15 @@ export const getters = {
       return elem.id === id
     })
   }
+  
+/*
+
+  ============== Aquí debería obtener de la base de datos las propiedades del arrendador dado ===========
+
+  getPropiedadesArrendador: (state) => (uid) => {
+    return state.propiedades.find(elem => {
+      return elem.uid === uid
+    })
+  }*/
 
 }
