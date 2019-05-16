@@ -2,10 +2,10 @@
   <v-container px-5>
   <v-layout row wrap>
 
-      <h1 class="display-2 font-weight-light">Para anunciar tu propiedad:&nbsp</h1>
-      <a @click = "login=true; signup=false" class="display-2 font-weight-light">inicia sesión</a>
-      <h1 class="display-2 font-weight-light">&nbsp o &nbsp</h1>
-      <a @click = "login=false; signup=true" class="display-2 font-weight-light">crea una cuenta nueva</a>
+      <h1 class="display-1 font-weight-light">Para anunciar tu propiedad &nbsp</h1>
+      <a @click = "login=true; signup=false" class="display-1 font-weight-light">inicia sesión</a>
+      <h1 class="display-1 font-weight-light">&nbsp o &nbsp</h1>
+      <a @click = "login=false; signup=true" class="display-1 font-weight-light">crea una cuenta nueva</a>
 
   </v-layout>
 
