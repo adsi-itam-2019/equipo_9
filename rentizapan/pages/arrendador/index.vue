@@ -56,7 +56,7 @@
           class ="mx-2"
           v-model="servicios"
           label="Cocina"
-          value="{icon: 'local_dining', label: 'Cocina'}"
+          value="Cocina"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
@@ -65,7 +65,7 @@
           class ="mx-2"
           v-model="servicios"
           label="Wi-Fi"
-          value="{icon: 'wifi', label: 'Wi-Fi'}"
+          value="Wi-Fi"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
@@ -74,7 +74,7 @@
           class ="mx-2"
           v-model="servicios"
           label="Lavadora"
-          value="{icon: 'local_laundry_service', label: 'Lavadora'}"
+          value="Lavadora"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
@@ -83,7 +83,7 @@
           class ="mx-2"
           v-model="servicios"
           label="Secadora"
-          value="{icon: 'trip_origin', label: 'Secadora'}"
+          value="Secadora"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
@@ -92,7 +92,7 @@
           class ="mx-2"
           v-model="servicios"
           label="Estacionamiento"
-          value="{icon: 'directions_car', label: 'Estacionamiento'}"
+          value="Estacionamiento"
           ></v-checkbox>
         </v-flex>
       </v-layout>

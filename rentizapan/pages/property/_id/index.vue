@@ -68,10 +68,10 @@
         </h4>
 
         <v-layout row wrap mb-2>
-          <v-flex xs6 v-for="elem in data.servicios" :key="elem.label">
+          <v-flex xs6 v-for="elem in data.servicios" :key="elem">
             <p class="subheading">
-              <v-icon>{{ elem.icon }}</v-icon>
-              {{ elem.label }}
+              <!-- <v-icon>{{ elem.icon }}</v-icon>   -->
+              {{ elem }}
             </p>
           </v-flex>
         </v-layout>
@@ -97,7 +97,8 @@ export default {
   computed: {
     data () {
       const id = this.$route.params.id
-      return this.$store.getters['getPropiedadById'](id)
+      let data = {...this.$store.getters['getPropiedadById'](id)}
+      return data
     }
   }
 }
