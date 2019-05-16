@@ -22,6 +22,12 @@
       @click="logout">
         cerrar sesión
       </v-btn>
+      <v-btn
+      outline
+      v-if="authenticated"
+      @click="perfil">
+      Perfil
+      </v-btn>
     </v-toolbar>
 
     <v-content>
@@ -54,6 +60,7 @@ export default {
   methods: {
     async logout () {
       try {
+        this.$router.replace('/');
         await this.$store.dispatch('logout')
       } catch (error) {
         console.log(error)
@@ -65,6 +72,9 @@ export default {
       } else {
         this.$router.push('/login')
       }
+    },
+    perfil () {
+      this.$router.push('/perfil');
     }
   },
   mounted () {

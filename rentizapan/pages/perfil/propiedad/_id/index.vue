@@ -1,6 +1,7 @@
+
 <template>
   <v-container>
-  <h1 class="display-3 font-weight-light">Agregue una propiedad</h1>
+  <h1 class="display-3 font-weight-light">Edita tu propiedad</h1>
    <v-layout class="mt-3" row wrap>
     <v-flex class="mt-4" xs12>
     <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
@@ -10,14 +11,14 @@
       lazy-validation
       >
       <v-text-field
-       v-model="titulo"
-       :rules='rulesTitulo'
-       label="Título"
-       type="text"
-       required
+        v-model="titulo"
+        :rules='rulesTitulo'
+        label="Título"
+        type="text"
+        required
       ></v-text-field>
       <v-text-field
-       v-model="calle"
+        v-model='calle'
        :rules='rulesCalle'
        label="Calle"
        type="text"
@@ -42,7 +43,7 @@
          required
         ></v-text-field>
         <v-text-field
-         v-model="del"
+         v-model="delegacion"
          :rules='rulesDel'
          label="Delegación"
          required
@@ -167,8 +168,8 @@
         type="submit"
         :loading="loading"
         :disabled="loading"
-        @click.prevent="agregarPropiedad">
-        Agregar Propiedad
+        @click.prevent="editarPropiedad">
+        Guardar Cambios
       </v-btn>
       </v-flex>
     </v-layout>
@@ -204,19 +205,23 @@
 
 <script>
 export default {
-  data: () => ({
-      valid:true,
-      titulo: '',
-      calle : '',
-      numero: '',
-      numInt: '',
-      colonia: '',
-      del: '',
-      precio: '',
-      servicios: [],
-      descripcion:[0,0,0],
-      imgUrl :'',
-      image: null,
+  data: function() {
+      let id = this.$route.params.id
+      let property =  this.$store.getters['getPropiedadById'](id);
+      return {valid:true,
+      id: property.id,
+      uid: property.uid,
+      titulo: property.titulo,
+      calle : property.calle,
+      numero: property.numero,
+      numInt: property.numInt,
+      colonia: property.colonia,
+      delegacion: property.delegacion,
+      precio: property.precio,
+      servicios: property.servicios,
+      descripcion: property.descripcion,
+      imgUrl: property.imgUrl,
+      image: property.image,
       rulesTitulo :[ v => !!v || 'Ingrese un título para su propiedad',],
       rulesCalle : [ v => !!v || 'Ingrese la calle en dónde se encuentra la propiedad',],
       rulesNum : [v => !!v || 'Ingrese el número en el que se encuentra la propiedad (o alguna referencia)',],
@@ -228,27 +233,28 @@ export default {
       rulesRenta : [v => !!v || 'Indique lo que espera recibir de renta por mes',],
       loading: false,
       dialog: false
-  }),
+    }
+  },
   methods: {
-    async agregarPropiedad () {
+    async editarPropiedad () {
       if (this.$refs.form.validate()) {
         this.loading = true
         let user = this.$store.getters.getUser
-        console.log(user)
+        //console.log(user)
         let propiedad = {
-          uid : user.uid,
+          uid : this.uid,
           titulo: this.titulo,
           calle: this.calle,
           numero: this.numero,
           numInt: this.numInt,
           colonia: this.colonia,
-          delegacion: this.del,
+          delegacion: this.delegacion,
           servicios: this.servicios,
           descripcion : this.descripcion,
           precio: this.precio,
           image : this.image
         }
-        await this.$store.dispatch('addProperty', propiedad)
+        await this.$store.dispatch('editProperty', propiedad)
         this.dialog = true
         this.loading = false
       } else {
@@ -275,7 +281,7 @@ export default {
     aceptar(){
       this.dialog = false
       //TODO: hacer perfil
-      this.$router.replace('/')
+      this.$router.push('/perfil')
     }
 
   },
