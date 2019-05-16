@@ -115,7 +115,7 @@ export const actions = {
 							return firebase.firestore().collection('propiedades').doc(key).update({
 								imgUrl : imgUrl
 							}).then(
-									resolve('Propiedad agregada: ', docRef)
+								resolve('Propiedad agregada: ', docRef)
 							)
 						})
 					})
@@ -126,12 +126,9 @@ export const actions = {
 
 
 	editProperty ({}, property) {
-		//let key
-		//let imageUrl
-		/*let newProperty = {
-      id: property.id,
-      imgUrl: property.img
-			uid : property.uid,
+		let key
+		let imageUrl
+		let updated = {
 			titulo: property.titulo,
 			calle: property.calle,
 			numero: property.numero,
@@ -141,36 +138,17 @@ export const actions = {
 			servicios: property.servicios,
       descripcion : property.descripcion,
       precio: property.precio
-		}*/
-    let up = {}
-    
-    up['/propiedades/'+property.id] = property;
+    }
     return new Promise((resolve, reject) => {
-      firebase.database().ref().update(up)})
-      //.catch((err) => reject(err));
-		/*
-    return new Promise((resolve, reject) => {
-      firebase.firestore().ref().update(up)
-        .then(docRef => {
-					//key = docRef.id
-					//const filename = property.image.name
-					//const ext = filename.slice(filename.lastIndexOf('.'))
-					//return firebase.storage().ref().child('casas/' + key + '.' + ext).put(property.image)
-  
-          }).then(fileData => {
-						let imgRef = fileData.metadata.fullPath
-						return firebase.storage().ref().child(imgRef).getDownloadURL().then(function(imgUrl){
-							return firebase.firestore().collection('propiedades').doc(key).update({
-								imgUrl : imgUrl
-							}).then(
-									resolve('Propiedad agregada: ', docRef)
-							)
-						})
-					})
-				})
-        .catch((err) => reject(err))
+      firebase.firestore().collection('propiedades').doc(property.id).update(updated)
+        .then(() => {
+          resolve()
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
     })
-    */
 	},
 
 	fetchProperties ({ commit }) {

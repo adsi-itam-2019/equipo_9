@@ -130,18 +130,6 @@
         </v-layout>
       </v-container>
       <v-container>
-      <h2 class="headline font-weight-light">Incluya una fotografía de su propiedad</h2>
-      <v-layout v-bind="binding" wrap align-start justify-space-between>
-        <v-flex class = "mt-3" xs12 sm6>
-          <v-btn color="#4069B3" class = "white--text" @click="pickFile">Suba una foto</v-btn>
-          <input type ="file" ref="inputFile" @change="filePicked" accept="image/*" style="display:none;" />
-        </v-flex>
-        <v-flex xs12 sm6>
-          <v-card>
-            <v-img contain :src="imgUrl"></v-img>
-          </v-card>
-        </v-flex>
-      </v-layout>
       </v-container>
       <v-layout row>
         <v-flex xs4>
@@ -184,7 +172,7 @@
           class="headline grey lighten-2"
           primary-title
         >
-        ¡Propiedad agregada exitosamente!
+        ¡Propiedad editada exitosamente!
         </v-card-title>
         <v-divider></v-divider>
         <v-card-actions>
@@ -238,25 +226,27 @@ export default {
   methods: {
     async editarPropiedad () {
       if (this.$refs.form.validate()) {
-        this.loading = true
-        let user = this.$store.getters.getUser
-        //console.log(user)
-        let propiedad = {
-          uid : this.uid,
-          titulo: this.titulo,
-          calle: this.calle,
-          numero: this.numero,
-          numInt: this.numInt,
-          colonia: this.colonia,
-          delegacion: this.delegacion,
-          servicios: this.servicios,
-          descripcion : this.descripcion,
-          precio: this.precio,
-          image : this.image
+        try {
+          this.loading = true
+          let propiedad = {
+            id: this.id,
+            titulo: this.titulo,
+            calle: this.calle,
+            numero: this.numero,
+            numInt: this.numInt,
+            colonia: this.colonia,
+            delegacion: this.delegacion,
+            servicios: this.servicios,
+            descripcion : this.descripcion,
+            precio: this.precio
+          }
+          await this.$store.dispatch('editProperty', propiedad)
+          this.dialog = true
+          this.loading = false
+        } catch (error) {
+          this.loading = false
+          alert(error)
         }
-        await this.$store.dispatch('editProperty', propiedad)
-        this.dialog = true
-        this.loading = false
       } else {
         this.loading = false
         console.log('Invalid form')

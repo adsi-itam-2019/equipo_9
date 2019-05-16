@@ -43,7 +43,7 @@
           flat
           color="#4069B3"
           dark>
-            Más información
+            Editar
           </v-btn>
         </v-card-actions>
       </v-card>
