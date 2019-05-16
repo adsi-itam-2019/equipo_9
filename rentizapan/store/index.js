@@ -115,12 +115,39 @@ export const actions = {
 							return firebase.firestore().collection('propiedades').doc(key).update({
 								imgUrl : imgUrl
 							}).then(
-									resolve('Propiedad agregada: ', docRef)
+								resolve('Propiedad agregada: ', docRef)
 							)
 						})
 					})
 				})
         .catch((err) => reject(err))
+    })
+	},
+
+
+	editProperty ({}, property) {
+		let key
+		let imageUrl
+		let updated = {
+			titulo: property.titulo,
+			calle: property.calle,
+			numero: property.numero,
+			numInt: property.numInt,
+			colonia: property.colonia,
+			delegacion: property.delegacion,
+			servicios: property.servicios,
+      descripcion : property.descripcion,
+      precio: property.precio
+    }
+    return new Promise((resolve, reject) => {
+      firebase.firestore().collection('propiedades').doc(property.id).update(updated)
+        .then(() => {
+          resolve()
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
     })
 	},
 
@@ -158,10 +185,19 @@ export const getters = {
     return state.user
   },
 
+  //getUserId (state) {
+    //return state.user.uid;
+  //},
+
   getPropiedadById: (state) => (id) => {
     return state.propiedades.find(elem => {
       return elem.id === id
     })
-  }
+  },
 
+  getPropiedadesByUserId: (state) => (uid) => {
+    return state.propiedades.filter(elem => {
+      return elem.uid === uid
+    })
+  },
 }
