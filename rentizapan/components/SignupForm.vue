@@ -72,6 +72,7 @@
         email2:'',
         emailRules:[
             v => !!v || 'Proporcione un correo',
+            v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un e-mail válido del ITAM'
         ],
         emailRules2: [
           v => !!v || 'Confirme su correo',
@@ -80,14 +81,18 @@
         pass2:'',
         passRules:[
           v => !!v || 'Ingrese su contraseña',
+          v => v.length>=6 || "La contraseña debe ser de mínimo 6 caracteres"
         ],
         passRules2:[
           v => !!v || 'Confirme su contraseña',
+          v => v.length>=6 || "La contraseña debe ser de mínimo 6 caracteres"
         ],
         nombre:'',
-        nomRules: [  v => !!v || 'Ingrese su nombre',],
+        nomRules: [  v => !!v || 'Ingrese su nombre',
+                     v => /^[^0-9_/!@#$%&*\(\)\-\\:;.,><\[\]\{\}]+$/.test(v)|| 'Escriba un nombre válido'],
         apellido:'',
-        apRules: [ v => !!v || 'Ingrese su apellido',]
+        apRules: [ v => !!v || 'Ingrese su apellido',
+                   v => /^[^0-9_/!@#$%&*\(\)\-\\:;.,><\[\]\{\}]+$/.test(v)|| 'Escriba un apellido válido']
     }),
   }
 </script>
