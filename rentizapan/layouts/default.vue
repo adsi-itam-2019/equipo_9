@@ -22,6 +22,12 @@
       @click="logout">
         cerrar sesión
       </v-btn>
+      <v-btn
+      outline
+      v-if="authenticated"
+      @click="perfil">
+      Perfil
+      </v-btn>
     </v-toolbar>
 
     <v-content>
@@ -65,6 +71,9 @@ export default {
       } else {
         this.$router.push('/login')
       }
+    },
+    perfil () {
+      this.$router.push('/perfil');
     }
   },
   mounted () {

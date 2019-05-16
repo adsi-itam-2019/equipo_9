@@ -1,7 +1,8 @@
 <template>
 <v-container fluid grid-list-lg>
 
-  <h1 class="display-3 font-weight-light">Encuentra tu casa ideal</h1>
+  <h1 class="display-3 font-weight-light">Bienvenido, {{this.$store.getters.getUser['email']}}</h1>
+  <h2>Adiministra tus propiedades</h2>
 
   <v-layout row wrap justify-center v-if="loading">
     <v-flex xs12>
@@ -22,7 +23,7 @@
     class="clickable"
     v-for="(card, i) in propiedades"
     :key="i"
-    @click="$router.push(`/property/${card.id}`)">
+    @click="$router.push(`/perfil/propiedad/${card.id}`)">
       <v-card>
         <v-img
           class="white--text"
@@ -63,8 +64,10 @@ export default {
   },
   computed: {
     propiedades () {
-      let uid = this.$store.getters.getUserId
-      return this.$store.getters.getPropiedades
+      //this.$store.dispatch('checkUser')
+      let uid = this.$store.getters.getUser['uid'];
+      return this.$store.getters.getPropiedadesByUserId(uid);
+      return this.$store.getters.getPropiedadesByUserId("NIaepF9qQgZF0cLXv3aloslLzn82");
     }
   },
   methods: {

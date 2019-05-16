@@ -158,10 +158,19 @@ export const getters = {
     return state.user
   },
 
+  //getUserId (state) {
+    //return state.user.uid;
+  //},
+
   getPropiedadById: (state) => (id) => {
     return state.propiedades.find(elem => {
       return elem.id === id
     })
-  }
+  },
 
+  getPropiedadesByUserId: (state) => (uid) => {
+    return state.propiedades.filter(elem => {
+      return elem.uid === uid
+    })
+  },
 }
