@@ -124,6 +124,55 @@ export const actions = {
     })
 	},
 
+
+	editProperty ({}, property) {
+		//let key
+		//let imageUrl
+		/*let newProperty = {
+      id: property.id,
+      imgUrl: property.img
+			uid : property.uid,
+			titulo: property.titulo,
+			calle: property.calle,
+			numero: property.numero,
+			numInt: property.numInt,
+			colonia: property.colonia,
+			delegacion: property.delegacion,
+			servicios: property.servicios,
+      descripcion : property.descripcion,
+      precio: property.precio
+		}*/
+    let up = {}
+    
+    up['/propiedades/'+property.id] = property;
+    return new Promise((resolve, reject) => {
+      firebase.database().ref().update(up)})
+      //.catch((err) => reject(err));
+		/*
+    return new Promise((resolve, reject) => {
+      firebase.firestore().ref().update(up)
+        .then(docRef => {
+					//key = docRef.id
+					//const filename = property.image.name
+					//const ext = filename.slice(filename.lastIndexOf('.'))
+					//return firebase.storage().ref().child('casas/' + key + '.' + ext).put(property.image)
+  
+          }).then(fileData => {
+						let imgRef = fileData.metadata.fullPath
+						return firebase.storage().ref().child(imgRef).getDownloadURL().then(function(imgUrl){
+							return firebase.firestore().collection('propiedades').doc(key).update({
+								imgUrl : imgUrl
+							}).then(
+									resolve('Propiedad agregada: ', docRef)
+							)
+						})
+					})
+				})
+        .catch((err) => reject(err))
+    })
+    */
+	},
+
 	fetchProperties ({ commit }) {
 		firebase.firestore().collection('propiedades').onSnapshot(snap => {
       let propiedades = []

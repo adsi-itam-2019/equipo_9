@@ -77,6 +77,7 @@ export default {
   },
   async mounted () {
     this.loading = true
+    //await this.$store.dispatch('fetchUser')
     await this.$store.dispatch('fetchProperties')
     this.loading = false
   }

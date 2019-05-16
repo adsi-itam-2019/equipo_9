@@ -11,39 +11,39 @@
       lazy-validation
       >
       <v-text-field
-       :value="data.titulo"
-       :rules='rulesTitulo'
-       label="Título"
-       type="text"
-       required
+        v-model="titulo"
+        :rules='rulesTitulo'
+        label="Título"
+        type="text"
+        required
       ></v-text-field>
       <v-text-field
-       :value="data.calle"
+        v-model='calle'
        :rules='rulesCalle'
        label="Calle"
        type="text"
        required
       ></v-text-field>
         <v-text-field
-         :value="data.numero"
+         v-model="numero"
          :rules="rulesNum"
          label="Número"
          type="text"
          required
         ></v-text-field>
         <v-text-field
-         :value="data.numInt"
+         v-model="numInt"
          :rules='[]'
          label="Número interior (si aplica)"
         ></v-text-field>
         <v-text-field
-         :value="data.colonia"
+         v-model="colonia"
          :rules='rulesColonia'
          label="Colonia"
          required
         ></v-text-field>
         <v-text-field
-         :value="data.delegacion"
+         v-model="delegacion"
          :rules='rulesDel'
          label="Delegación"
          required
@@ -102,7 +102,7 @@
         <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex xs1 sm4>
           <v-select
-             :value="data.descripcion[0]"
+             v-model="descripcion[0]"
              :items="[1,2,3,4,5,6,7,8,9,10]"
              :rules="rulesCuartos"
              label="Número de cuartos"
@@ -111,7 +111,7 @@
         </v-flex>
         <v-flex xs1 sm4>
           <v-select
-             :value="data.descripcion[1]"
+             v-model="descripcion[1]"
              :items="[1,2,3,4,5,6,7,8,9,10]"
              :rules="rulesCamas"
              label="Número de camas"
@@ -120,7 +120,7 @@
          </v-flex>
         <v-flex xs1 sm4>
           <v-select
-             :value="data.descripcion[2]"
+             v-model="descripcion[2]"
              :items="[1,2,3,4,5,6,7,8,9,10]"
              :rules="rulesBaños"
              label="Número de baños"
@@ -138,7 +138,7 @@
         </v-flex>
         <v-flex xs12 sm6>
           <v-card>
-            <v-img contain :src="data.imgUrl"></v-img>
+            <v-img contain :src="imgUrl"></v-img>
           </v-card>
         </v-flex>
       </v-layout>
@@ -149,7 +149,7 @@
         </v-flex>
         <v-flex xs8>
           <v-text-field
-            :value="data.precio"
+            v-model="precio"
             solo
             label="Renta"
             type ="number"
@@ -168,7 +168,7 @@
         type="submit"
         :loading="loading"
         :disabled="loading"
-        @click.prevent="agregarPropiedad">
+        @click.prevent="editarPropiedad">
         Guardar Cambios
       </v-btn>
       </v-flex>
@@ -205,19 +205,23 @@
 
 <script>
 export default {
-  data: () => ({
-      valid:true,
-      titulo: '',
-      calle : 'esta es la calle',
-      numero: '',
-      numInt: '',
-      colonia: '',
-      del: '',
-      precio: '',
-      servicios: [],
-      descripcion:[0,0,0],
-      imgUrl :'',
-      image: null,
+  data: function() {
+      let id = this.$route.params.id
+      let property =  this.$store.getters['getPropiedadById'](id);
+      return {valid:true,
+      id: property.id,
+      uid: property.uid,
+      titulo: property.titulo,
+      calle : property.calle,
+      numero: property.numero,
+      numInt: property.numInt,
+      colonia: property.colonia,
+      delegacion: property.delegacion,
+      precio: property.precio,
+      servicios: property.servicios,
+      descripcion: property.descripcion,
+      imgUrl: property.imgUrl,
+      image: property.image,
       rulesTitulo :[ v => !!v || 'Ingrese un título para su propiedad',],
       rulesCalle : [ v => !!v || 'Ingrese la calle en dónde se encuentra la propiedad',],
       rulesNum : [v => !!v || 'Ingrese el número en el que se encuentra la propiedad (o alguna referencia)',],
@@ -229,27 +233,28 @@ export default {
       rulesRenta : [v => !!v || 'Indique lo que espera recibir de renta por mes',],
       loading: false,
       dialog: false
-  }),
+    }
+  },
   methods: {
-    async agregarPropiedad () {
+    async editarPropiedad () {
       if (this.$refs.form.validate()) {
         this.loading = true
         let user = this.$store.getters.getUser
-        console.log(user)
+        //console.log(user)
         let propiedad = {
-          uid : user.uid,
+          uid : this.uid,
           titulo: this.titulo,
           calle: this.calle,
           numero: this.numero,
           numInt: this.numInt,
           colonia: this.colonia,
-          delegacion: this.del,
+          delegacion: this.delegacion,
           servicios: this.servicios,
           descripcion : this.descripcion,
           precio: this.precio,
           image : this.image
         }
-        await this.$store.dispatch('addProperty', propiedad)
+        await this.$store.dispatch('editProperty', propiedad)
         this.dialog = true
         this.loading = false
       } else {
@@ -281,10 +286,6 @@ export default {
 
   },
   computed: {
-    data(){
-      const id = this.$route.params.id
-      return this.$store.getters['getPropiedadById'](id);
-    },
     binding () {
       const binding = {}
       if (this.$vuetify.breakpoint.xs) binding.column = true

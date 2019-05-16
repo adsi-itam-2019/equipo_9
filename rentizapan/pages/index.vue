@@ -63,7 +63,6 @@ export default {
   },
   computed: {
     propiedades () {
-      let uid = this.$store.getters.getUserId
       return this.$store.getters.getPropiedades
     }
   },

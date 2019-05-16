@@ -60,6 +60,7 @@ export default {
   methods: {
     async logout () {
       try {
+        this.$router.replace('/');
         await this.$store.dispatch('logout')
       } catch (error) {
         console.log(error)
