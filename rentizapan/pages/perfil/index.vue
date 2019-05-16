@@ -1,8 +1,8 @@
 <template>
 <v-container fluid grid-list-lg>
 
-  <h1 class="display-3 font-weight-light">Bienvenido, {{this.$store.getters.getUser['email']}}</h1>
-  <h2>Adiministra tus propiedades</h2>
+  <h1 class="display-2 font-weight-light mb-5">Bienvenido, {{ email }}</h1>
+  <h2 class="title mb-3">Adiministra tus propiedades</h2>
 
   <v-layout row wrap justify-center v-if="loading">
     <v-flex xs12>
@@ -63,23 +63,18 @@ export default {
     }
   },
   computed: {
+    email () {
+      return this.$store.getters.getUser.email
+    },
     propiedades () {
-      //this.$store.dispatch('checkUser')
-      let uid = this.$store.getters.getUser['uid'];
-      return this.$store.getters.getPropiedadesByUserId(uid);
-      return this.$store.getters.getPropiedadesByUserId("NIaepF9qQgZF0cLXv3aloslLzn82");
+      let uid = this.$store.getters.getUser.uid
+      return this.$store.getters.getPropiedadesByUserId(uid)
     }
   },
   methods: {
     formatNumber (val) {
       return numeral(val).format('$0,0.00')
     }
-  },
-  async mounted () {
-    this.loading = true
-    //await this.$store.dispatch('fetchUser')
-    await this.$store.dispatch('fetchProperties')
-    this.loading = false
   }
 }
 </script>
