@@ -276,7 +276,7 @@ export default {
     aceptar(){
       this.dialog = false
       //TODO: hacer perfil
-      $router.push(`/perfil`)
+      this.$router.push(`/perfil`)
     }
 
   },

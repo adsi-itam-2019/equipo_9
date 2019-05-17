@@ -66,7 +66,6 @@ export default {
       email: '',
       emailRules:[
         v => !!v || 'Proporcione un correo',
-        v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un correo válido del ITAM'
       ],
       pass:'',
       pass2:'',
