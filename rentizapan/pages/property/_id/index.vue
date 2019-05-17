@@ -70,7 +70,7 @@
         <v-layout row wrap mb-2>
           <v-flex xs6 v-for="elem in data.servicios" :key="elem">
             <p class="subheading">
-              <!-- <v-icon>{{ elem.icon }}</v-icon>   -->
+              <v-icon>{{ getIcon(elem) }}</v-icon> 
               {{ elem }}
             </p>
           </v-flex>
@@ -89,11 +89,29 @@
 
 <script>
 export default {
-  data () {
-    return {
-      
+  methods: {
+    getIcon (label) {
+      switch (label) {
+        case 'Cocina':
+          return 'local_dining'
+          break;
+        case 'Wi-Fi':
+          return 'wifi'
+          break;
+        case 'Lavadora':
+          return 'local_laundry_service'
+          break;
+        case 'Secadora':
+          return 'trip_origin'
+          break;
+        case 'Estacionamiento':
+          return 'directions_car'
+          break;
+        default:
+          break;
+      }
     }
-  },
+  },  
   computed: {
     data () {
       const id = this.$route.params.id
