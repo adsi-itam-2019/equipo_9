@@ -97,7 +97,6 @@
         </v-flex>
       </v-layout>
       </v-container>
-      <p>{{servicios}}</p>
       <h2 class="headline font-weight-light">Agregue una descripción de la propiedad</h2>
       <v-container>
         <v-layout v-bind="binding" wrap align-start justify-space-between>

@@ -16,18 +16,20 @@
         anuncia tu propiedad
       </v-btn>
 
+      <v-btn
+      flat
+      v-if="authenticated"
+      @click="perfil">
+      Perfil
+      </v-btn>
+
       <v-btn 
       outline
       v-if="authenticated"
       @click="logout">
         cerrar sesión
       </v-btn>
-      <v-btn
-      outline
-      v-if="authenticated"
-      @click="perfil">
-      Perfil
-      </v-btn>
+
     </v-toolbar>
 
     <v-content>
