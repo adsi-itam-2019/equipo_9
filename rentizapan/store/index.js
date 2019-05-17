@@ -87,6 +87,24 @@ export const actions = {
     })
   },
 
+	addMensaje({}, mensaje){
+		let msg = {
+			idP: mensaje.idP,
+			nombre: mensaje.nombre,
+			apellido: mensaje.apellido,
+			mail: mensaje.mail,
+			genero: mensaje.genero,
+			msg:  mensaje.msg
+		}
+		return new Promise((resolve, reject) => {
+			firebase.firestore().collection('mensajes').add(msg)
+				.then(resp => {
+          resolve(resp)
+        })
+				.catch((err) => reject(err))
+		})
+	},
+
 	addProperty ({}, property) {
 		let key
 		let imageUrl
