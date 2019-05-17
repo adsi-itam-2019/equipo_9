@@ -4,6 +4,8 @@ import { interopDefault } from './utils'
 
 const _b0527d54 = () => interopDefault(import('../pages/arrendador/index.vue' /* webpackChunkName: "pages/arrendador/index" */))
 const _7264316e = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
+const _59c9fafc = () => interopDefault(import('../pages/perfil/index.vue' /* webpackChunkName: "pages/perfil/index" */))
+const _3e10d006 = () => interopDefault(import('../pages/perfil/propiedad/_id/index.vue' /* webpackChunkName: "pages/perfil/propiedad/_id/index" */))
 const _7f3152f4 = () => interopDefault(import('../pages/datos/_id/index.vue' /* webpackChunkName: "pages/datos/_id/index" */))
 const _000ee1f6 = () => interopDefault(import('../pages/property/_id/index.vue' /* webpackChunkName: "pages/property/_id/index" */))
 const _1b0b4a2f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -90,6 +92,14 @@ export function createRouter() {
       path: "/login",
       component: _7264316e,
       name: "login"
+    }, {
+      path: "/perfil",
+      component: _59c9fafc,
+      name: "perfil"
+    }, {
+      path: "/perfil/propiedad/:id?",
+      component: _3e10d006,
+      name: "perfil-propiedad-id"
     }, {
       path: "/datos/:id?",
       component: _7f3152f4,

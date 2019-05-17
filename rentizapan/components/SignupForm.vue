@@ -66,11 +66,13 @@ export default {
       email: '',
       emailRules:[
         v => !!v || 'Proporcione un correo',
+        v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un correo válido del ITAM'
       ],
       pass:'',
       pass2:'',
       passRules:[
         v => !!v || 'Ingrese su contraseña',
+        v => v.length>=6 || "La contraseña debe ser de mínimo 6 caracteres"
       ],
       passRules2:[
         v => !!v || 'Confirme su contraseña',
