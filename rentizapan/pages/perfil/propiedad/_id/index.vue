@@ -4,7 +4,6 @@
   <h1 class="display-3 font-weight-light">Edita tu propiedad</h1>
    <v-layout class="mt-3" row wrap>
     <v-flex class="mt-4" xs12>
-    <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
     <v-form
       ref="form"
       v-model ="valid"
@@ -52,46 +51,46 @@
       <v-container>
       <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='local_dining' 
-          class ="mx-2" v-model="servicios" 
-          label="Cocina" 
+          <v-checkbox
+          append-icon='local_dining'
+          class ="mx-2" v-model="servicios"
+          label="Cocina"
           :value="{icon: 'local_dining', label: 'Cocina'}"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='wifi' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Wi-Fi" 
+          <v-checkbox
+          append-icon='wifi'
+          class ="mx-2"
+          v-model="servicios"
+          label="Wi-Fi"
           :value="{icon: 'wifi', label: 'Wi-Fi'}"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='local_laundry_service' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Lavadora" 
+          <v-checkbox
+          append-icon='local_laundry_service'
+          class ="mx-2"
+          v-model="servicios"
+          label="Lavadora"
           :value="{icon: 'local_laundry_service', label: 'Lavadora'}"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='trip_origin' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Secadora" 
+          <v-checkbox
+          append-icon='trip_origin'
+          class ="mx-2"
+          v-model="servicios"
+          label="Secadora"
           :value="{icon: 'trip_origin', label: 'Secadora'}"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='directions_car' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Estacionamiento" 
+          <v-checkbox
+          append-icon='directions_car'
+          class ="mx-2"
+          v-model="servicios"
+          label="Estacionamiento"
           :value="{icon: 'directions_car', label: 'Estacionamiento'}"
           ></v-checkbox>
         </v-flex>

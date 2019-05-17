@@ -23,7 +23,7 @@
     class="clickable"
     v-for="(card, i) in propiedades"
     :key="i"
-    @click="$router.push(`/perfil/propiedad/${card.id}`)">
+    >
       <v-card>
         <v-img
           class="white--text"
@@ -42,13 +42,52 @@
           <v-btn
           flat
           color="#4069B3"
-          dark>
+          dark
+          @click="$router.push(`/perfil/propiedad/${card.id}`)">
             Editar
           </v-btn>
+          <v-btn
+          flat
+          color = "error"
+          @click = "dialogEliminar = true; idEl = card.id"
+          >Eliminar
+        </v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
   </v-layout>
+
+  <v-dialog
+    v-model = "dialogEliminar"
+    width = 500
+  >
+    <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+        ¿Se desea eliminar la propiedad?
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="error"
+            flat
+            @click.prevent="eliminar"
+          >
+            Aceptar
+          </v-btn>
+          <v-btn
+            color="error"
+            flat
+            @click="dialogEliminar=false; idEl = ''"
+          >
+            Cancelar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
 </v-container>
 </template>
@@ -59,7 +98,9 @@ import numeral from 'numeral'
 export default {
   data () {
     return {
-      loading: false
+      idEl: '',
+      loading: false,
+      dialogEliminar: false
     }
   },
   computed: {
@@ -72,6 +113,15 @@ export default {
     }
   },
   methods: {
+    async eliminar(){
+      let propiedad = {
+        id: this.idEl
+      }
+      console.log(propiedad)
+      await this.$store.dispatch('delProperty', propiedad)
+      this.dialogEliminar = false
+    },
+
     formatNumber (val) {
       return numeral(val).format('$0,0.00')
     }
