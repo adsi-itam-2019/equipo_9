@@ -7,29 +7,33 @@
     <v-layout row wrap justify-center>
       <v-flex xs12 sm6>
         <v-text-field
+          v-model ="nombre"
           :rules="nameRules"
           label="Nombre"
           required
         ></v-text-field>
 
         <v-text-field
+          v-model="apellidos"
           :rules="apRules"
           label="Apellidos"
           required
         ></v-text-field>
 
         <v-text-field
+          v-model="mail"
           :rules="emailRules"
           label="E-mail"
           required
         ></v-text-field>
 
-        <v-radio-group row :rules="test">
+        <v-radio-group v-model="genero" row :rules="test">
           <v-radio label="Hombre" value="hom"></v-radio>
           <v-radio label="Mujer" value="muj"></v-radio>
         </v-radio-group>
 
         <v-textarea
+          v-model="msg"
           name="msg"
           label="Escriba un breve mensaje explicando por qué le interesa la propiedad"
           auto-grow
@@ -68,7 +72,7 @@
           <v-btn
             color="green darken-1"
             flat="flat"
-            @click="$router.replace('/')"
+            @click="$router.push(`/`)"
           >
           Entendido
           </v-btn>
@@ -82,8 +86,12 @@
 
   export default {
     data: () => ({
+      nombre :'',
+      apellidos : '',
+      mail: '',
+      genero: '',
+      msg: '',
       valid: true,
-      name: '',
       nameRules: [
         v => !!v || 'Requerido',
         v => /^[^0-9_/!@#$%&*\(\)\-\\:;.,><\[\]\{\}]+$/.test(v)|| 'Escriba un nombre válido'
@@ -92,7 +100,6 @@
         v => !!v || 'Requerido',
         v => /^[^0-9_/!@#$%&*\(\)\-\\:;.,><\[\]\{\}]+$/.test(v)|| 'Escriba un apellido válido'
       ],
-      email: '',
       emailRules: [
         v => !!v || 'Requerido',
         v => /^[a-zA-Z0-9\.]+@itam\.mx$/.test(v) || 'Proporciona un e-mail válido del ITAM'
@@ -105,16 +112,30 @@
 
     methods: {
 
-      submit () {
+      async submit () {
         if (this.$refs.form.validate()) {
-          // this.$refs.form.reset()
-          // this.$refs.form.resetValidation()
+          let mensaje ={
+            idP: this.$route.params.id,
+            nombre: this.nombre,
+            apellido: this.apellidos,
+            mail: this.mail,
+            genero: this.genero,
+            msg:  this.msg
+          }
+          console.log(mensaje.idP)
+          await this.$store.dispatch('addMensaje', mensaje)
           console.log('válido')
+          this.dialog = true
         } else {
           console.log('error')
         }
       }
 
+    },
+    computed: {
+      data () {
+
+      }
     }
   }
 </script>

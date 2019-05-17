@@ -86,11 +86,11 @@ export function createRouter() {
 
     routes: [{
       path: "/arrendador",
-      component: _b0527d54,
+      component: _2f0227e2,
       name: "arrendador"
     }, {
       path: "/login",
-      component: _7264316e,
+      component: _bd30cd86,
       name: "login"
     }, {
       path: "/perfil",
@@ -102,15 +102,15 @@ export function createRouter() {
       name: "perfil-propiedad-id"
     }, {
       path: "/datos/:id?",
-      component: _7f3152f4,
+      component: _722eee7a,
       name: "datos-id"
     }, {
       path: "/property/:id?",
-      component: _000ee1f6,
+      component: _69fad582,
       name: "property-id"
     }, {
       path: "/",
-      component: _1b0b4a2f,
+      component: _e102f9ba,
       name: "index"
     }],
 
