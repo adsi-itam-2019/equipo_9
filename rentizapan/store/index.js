@@ -124,6 +124,18 @@ export const actions = {
     })
 	},
 
+	delProperty({},property){
+
+		let idP = property.id
+		return new Promise((resolve, reject) => {
+			firebase.firestore().collection('propiedades').doc(idP).delete()
+				.then(docRef => {
+					resolve("Propiedad eliminada", docRef)
+				})
+				.catch((err) => reject(err))
+		})
+	},
+
 
 	editProperty ({}, property) {
 		let key

@@ -4,7 +4,6 @@
   <h1 class="display-3 font-weight-light">Edita tu propiedad</h1>
    <v-layout class="mt-3" row wrap>
     <v-flex class="mt-4" xs12>
-    <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
     <v-form
       ref="form"
       v-model ="valid"
