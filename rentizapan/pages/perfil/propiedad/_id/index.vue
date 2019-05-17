@@ -17,7 +17,7 @@
         required
       ></v-text-field>
       <v-text-field
-        v-model='calle'
+       v-model='calle'
        :rules='rulesCalle'
        label="Calle"
        type="text"
@@ -51,45 +51,45 @@
       <v-container>
       <v-layout v-bind="binding" wrap align-start justify-space-between>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='local_dining' 
-          class ="mx-2" v-model="servicios" 
-          label="Cocina" 
+          <v-checkbox
+          append-icon='local_dining'
+          class ="mx-2" v-model="servicios"
+          label="Cocina"
           value="Cocina"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='wifi' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Wi-Fi" 
+          <v-checkbox
+          append-icon='wifi'
+          class ="mx-2"
+          v-model="servicios"
+          label="Wi-Fi"
           value="Wi-Fi"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
+          <v-checkbox
           append-icon='local_laundry_service'
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Lavadora" 
+          class ="mx-2"
+          v-model="servicios"
+          label="Lavadora"
           value="Lavadora"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
           <v-checkbox
-          append-icon='trip_origin' 
-          class ="mx-2" 
-          v-model="servicios" 
-          label="Secadora" 
+          append-icon='trip_origin'
+          class ="mx-2"
+          v-model="servicios"
+          label="Secadora"
           value="Secadora"
           ></v-checkbox>
         </v-flex>
         <v-flex xs1 sm4>
-          <v-checkbox 
-          append-icon='directions_car' 
-          class ="mx-2" 
-          v-model="servicios" 
+          <v-checkbox
+          append-icon='directions_car'
+          class ="mx-2"
+          v-model="servicios"
           label="Estacionamiento"
           value="Estacionamiento"
           ></v-checkbox>
