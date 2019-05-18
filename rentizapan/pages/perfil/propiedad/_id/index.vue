@@ -1,23 +1,23 @@
+
 <template>
   <v-container>
-  <h1 class="display-3 font-weight-light">Agregue una propiedad</h1>
+  <h1 class="display-3 font-weight-light">Edita tu propiedad</h1>
    <v-layout class="mt-3" row wrap>
     <v-flex class="mt-4" xs12>
-    <h2 class="headline font-weight-light">Primero ingrese la dirección dónde se encuentra</h2>
     <v-form
       ref="form"
       v-model ="valid"
       lazy-validation
       >
       <v-text-field
-       v-model="titulo"
-       :rules='rulesTitulo'
-       label="Título"
-       type="text"
-       required
+        v-model="titulo"
+        :rules='rulesTitulo'
+        label="Título"
+        type="text"
+        required
       ></v-text-field>
       <v-text-field
-       v-model="calle"
+       v-model='calle'
        :rules='rulesCalle'
        label="Calle"
        type="text"
@@ -42,7 +42,7 @@
          required
         ></v-text-field>
         <v-text-field
-         v-model="del"
+         v-model="delegacion"
          :rules='rulesDel'
          label="Delegación"
          required
@@ -53,8 +53,7 @@
         <v-flex xs1 sm4>
           <v-checkbox
           append-icon='local_dining'
-          class ="mx-2"
-          v-model="servicios"
+          class ="mx-2" v-model="servicios"
           label="Cocina"
           value="Cocina"
           ></v-checkbox>
@@ -130,18 +129,6 @@
         </v-layout>
       </v-container>
       <v-container>
-      <h2 class="headline font-weight-light">Incluya una fotografía de su propiedad</h2>
-      <v-layout v-bind="binding" wrap align-start justify-space-between>
-        <v-flex class = "mt-3" xs12 sm6>
-          <v-btn color="#4069B3" class = "white--text" @click="pickFile">Suba una foto</v-btn>
-          <input type ="file" ref="inputFile" @change="filePicked" accept="image/*" style="display:none;" />
-        </v-flex>
-        <v-flex xs12 sm6>
-          <v-card>
-            <v-img contain :src="imgUrl"></v-img>
-          </v-card>
-        </v-flex>
-      </v-layout>
       </v-container>
       <v-layout row>
         <v-flex xs4>
@@ -168,8 +155,8 @@
         type="submit"
         :loading="loading"
         :disabled="loading"
-        @click.prevent="agregarPropiedad">
-        Agregar Propiedad
+        @click.prevent="editarPropiedad">
+        Guardar Cambios
       </v-btn>
       </v-flex>
     </v-layout>
@@ -184,7 +171,7 @@
           class="headline grey lighten-2"
           primary-title
         >
-        ¡Propiedad agregada exitosamente!
+        ¡Propiedad editada exitosamente!
         </v-card-title>
         <v-divider></v-divider>
         <v-card-actions>
@@ -205,19 +192,23 @@
 
 <script>
 export default {
-  data: () => ({
-      valid:true,
-      titulo: '',
-      calle : '',
-      numero: '',
-      numInt: '',
-      colonia: '',
-      del: '',
-      precio: '',
-      servicios: [],
-      descripcion:[0,0,0],
-      imgUrl :'',
-      image: null,
+  data: function() {
+      let id = this.$route.params.id
+      let property =  this.$store.getters['getPropiedadById'](id);
+      return {valid:true,
+      id: property.id,
+      uid: property.uid,
+      titulo: property.titulo,
+      calle : property.calle,
+      numero: property.numero,
+      numInt: property.numInt,
+      colonia: property.colonia,
+      delegacion: property.delegacion,
+      precio: property.precio,
+      servicios: property.servicios,
+      descripcion: property.descripcion,
+      imgUrl: property.imgUrl,
+      image: property.image,
       rulesTitulo :[ v => !!v || 'Ingrese un título para su propiedad',],
       rulesCalle : [ v => !!v || 'Ingrese la calle en dónde se encuentra la propiedad',],
       rulesNum : [v => !!v || 'Ingrese el número en el que se encuentra la propiedad (o alguna referencia)',],
@@ -229,29 +220,32 @@ export default {
       rulesRenta : [v => !!v || 'Indique lo que espera recibir de renta por mes',],
       loading: false,
       dialog: false
-  }),
+    }
+  },
   methods: {
-    async agregarPropiedad () {
+    async editarPropiedad () {
       if (this.$refs.form.validate()) {
-        this.loading = true
-        let user = this.$store.getters.getUser
-        console.log(user)
-        let propiedad = {
-          uid : user.uid,
-          titulo: this.titulo,
-          calle: this.calle,
-          numero: this.numero,
-          numInt: this.numInt,
-          colonia: this.colonia,
-          delegacion: this.del,
-          servicios: this.servicios,
-          descripcion : this.descripcion,
-          precio: this.precio,
-          image : this.image
+        try {
+          this.loading = true
+          let propiedad = {
+            id: this.id,
+            titulo: this.titulo,
+            calle: this.calle,
+            numero: this.numero,
+            numInt: this.numInt,
+            colonia: this.colonia,
+            delegacion: this.delegacion,
+            servicios: this.servicios,
+            descripcion : this.descripcion,
+            precio: this.precio
+          }
+          await this.$store.dispatch('editProperty', propiedad)
+          this.dialog = true
+          this.loading = false
+        } catch (error) {
+          this.loading = false
+          alert(error)
         }
-        await this.$store.dispatch('addProperty', propiedad)
-        this.dialog = true
-        this.loading = false
       } else {
         this.loading = false
         console.log('Invalid form')
@@ -276,7 +270,7 @@ export default {
     aceptar(){
       this.dialog = false
       //TODO: hacer perfil
-      $router.push(`/perfil`)
+      this.$router.push('/perfil')
     }
 
   },
