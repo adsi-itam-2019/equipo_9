@@ -30,7 +30,7 @@ Para poder disfrutar de estos beneficios en cualquier parte, la página cuenta c
 
 * **Jaime Limón** - *Scrum Master* - [Full Stack Developer](https://github.com/jlimons)
 * **Alejandro Rodríguez** - *Perfiles y Contacto* - [Freelancer](https://github.com/Alex23rodriguez)
-* **Paola del Hierro** - *Testing and UX* - [Entrepreneur](https://github.com/paoladelhierro)
+* **Paola del Hierro** - *Testing and UX* - [Full Stack Developer](https://github.com/paoladelhierro)
 * **Diego Villafuente** - *Pantalla de Inicio* - [Egresado del ITAM](https://github.com/diegovillafuerte)
 
 
