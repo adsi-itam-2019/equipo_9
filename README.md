@@ -1,88 +1,50 @@
-# Project Title
+# Rentizapan
 
-One Paragraph of project description goes here
+https://rentizapan.firebaseapp.com/
 
-## Getting Started
+Rentizapan es una plataforma que tiene como objetivo facilitar la búsqueda de un lugar para vivir. Está dirigida principalmente a estudiantes del ITAM y arrendadores en CDMX con propiedades cerca de la universidad o con características atractivas a estudiantes.
+Se buscó combinar simplicidad en el diseño con facilidad de uso para ambos tipos de usuarios.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Funcionalidades
 
-### Prerequisites
+Sabemos lo estresante que puede llegar a ser administrar propiedades. Por esta razón buscamos que los propietarios no deban invertir demasiado tiempo ni recursos en anunciarlas y ponerse en contacto con posibles alquilinos. Por eso se ha buscado tener una experiencia positiva al momento de:
+* Crear una cuenta
+* Agregar propiedades
+* Editar la información y detalles de cada propiedad
+* Eliminar propiedades existentes
 
-What things you need to install the software and how to install them
+En cuanto a los usuarios que buscan departamento, casa o habitación para rentar, creemos que la experiencia de descubrimiento debe tener la menor cantidad de obstáculos posibles:
+* Descubrir propiedades es fácil
+* No requiere inicio de sesión
+* Contactar al arrendador es rápido
 
-```
-Give examples
-```
+Para poder disfrutar de estos beneficios en cualquier parte, la página cuenta con un diseño responsivo que se adapta al tamaño de la pantalla. La experiencia en celular o tablet es tan placentera como en un monitor.
 
-### Installing
+## Hecho con
 
-A step by step series of examples that tell you how to get a development env running
+* [Vue.js](https://vuejs.org/) - Framework web para acelerar el desarrollo
+* [Firebase](https://firebase.google.com/) - Base de Datos
+* [Vuetify.js](https://vuetifyjs.com/en/) - Framework de componentes inspirados por *Material Design*
 
-Say what the step will be
+## Autores
 
-```
-Give the example
-```
+* **Jaime Limón** - *Scrum Master* - [Full Stack Developer](https://github.com/jlimons)
+* **Alejandro Rodríguez** - *Perfiles y Contacto* - [Freelancer](https://github.com/Alex23rodriguez)
+* **Paola del Hierro** - *Testing and UX* - [Entrepreneur](https://github.com/paoladelhierro)
+* **Diego Villafuente** - *Pantalla de Inicio* - [Egresado del ITAM](https://github.com/diegovillafuerte)
 
-And repeat
 
-```
-until finished
-```
+Ver la lista de [contribuidores](https://github.com/adsi-itam-2019/equipo_9/graphs/contributors) que participaron en este proyecto.
 
-End with an example of getting some data out of the system or using it for a little demo
+## Known Issues
+* Recargar el navegador mientras se encuentra en la página de Editar Propiedad crashea la página
+* Al cerrar posible, es en teoría posible regresar en el navegador hasta terminar en una página a la que no se debería tener acceso, como Agregar propiedad y Perfil.
 
-## Running the tests
+## Licencia
 
-Explain how to run the automated tests for this system
+Este proyecto fue realizado por alumnos del Instituto Tecnológico Autónomo de México para la clase de Análisis y Diseño de Sistemas de Información.
 
-### Break down into end to end tests
+## Agradecimientos
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Gracias al [Product Owner](https://github.com/paulinabustos) por proporcionarnos con las herramientas necesarias para convertir este proyecto en una realidad.
 
